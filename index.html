@@ -1,0 +1,305 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>reveal.js</title>
+
+  <link rel="stylesheet" href="dist/reset.css">
+  <link rel="stylesheet" href="dist/reveal.css">
+  <link rel="stylesheet" href="dist/theme/white.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <section>
+        <img data-src="assets/d3.svg" width="800">
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+          ## What is it?
+
+          D3.js 
+          is a JavaScript library for producing dynamic, 
+          interactive data visualizations in web browsers.
+          </textarea>
+        </section>
+        <section>
+          <p>Was created by Mike Bostock in 2011.</p>
+          <img data-src="assets/mike.jpeg" width="400">
+        </section>
+        <section>
+          <img data-src="assets/preview.png" width="700">
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ## D3 Features
+  
+            - Uses Web Standards
+            - Data Driven
+            - DOM Manipulation
+            - Data Driven Elements
+            - Dynamic Properties
+            - Types of visualization
+            - Custom Visualizations
+            - Transitions
+            - Interaction and animation
+          </textarea>
+        </section>
+
+        <section>
+          <img data-src="assets/data-example.png">
+        </section>
+        <section>
+          <img data-src="assets/bar-race.gif">
+          <a href="https://observablehq.com/@d3/bar-chart-race">Source</a>
+        </section>
+      </section>
+
+      <section data-markdown>
+        <textarea data-template>
+            ## What's so good about it?
+            🤔
+
+            - D3 is popular (265M downloads and 100K stars).
+
+            - D3 was designed for more than just graphs and charts. 
+  
+            - D3 is renowned for animation and interaction.
+
+            - Can be used with any JS framework
+
+            - Lightweight and fast
+          </textarea>
+      </section>
+
+      <section data-markdown>
+        <textarea data-template>
+            ## Setup D3.js Development Environment
+
+            1. D3 library            
+            
+            2. Web server
+            
+            3. Editor
+            
+            4. Web browser
+          </textarea>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+              ## DOM Selection
+  
+            - d3.select(css-selector);
+  
+            - d3.selectAll(css-selector);
+            </textarea>
+        </section>
+        <section>
+          <pre><code data-trim data-noescape>
+            d3.select("p").style("color", "green");
+          </code></pre>
+        </section>
+        <section>
+          <img data-src="assets/selection.png">
+        </section>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+              ## DOM Manipulation
+  
+              - text("content")
+
+              - append("element name")
+              
+              - insert("element name")
+              
+              - remove()
+              
+              - html("content")
+              
+              - attr("name", "value"), property("name", "value")
+              
+              - style("name", "value")
+            </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ## Method Chaining
+
+            ```
+            d3.select("body")
+              .append("p")
+              .text("Third paragraph");
+            ```
+          </textarea>
+        </section>
+      </section>
+
+      <section data-markdown>
+        <textarea data-template>
+            ## Function of Data
+
+            ```
+            d3.selectAll("p").style("color", function(d, i) {
+              var text = this.innerText;
+          
+              if (text.indexOf("Error") >= 0) {
+                  return "red";
+              } else if (text.indexOf("Warning") >= 0) {
+                  return "yellow";
+              }
+            });
+            ```
+          </textarea>
+      </section>
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+            ## Events
+  
+            ```
+            d3.selection.on(type[, listener[, capture]]);
+            ```
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            - selection.on()
+
+            - selection.dispatch()
+
+            - d3.event
+
+            - d3.touch()
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ```
+            d3.selectAll("div")
+            .on("mouseover", function(){
+                d3.select(this)
+                  .style("background-color", "orange");
+      
+                console.log(d3.event);
+                
+                console.log(d3.mouse(this));
+            })
+            .on("mouseout", function(){
+                d3.select(this)
+                  .style("background-color", "steelblue")
+            });
+            ```
+          </textarea>
+        </section>
+      </section>
+
+      <section data-markdown>
+        <textarea data-template>
+          ## Animation
+
+          - selection.transition()
+
+          - transition.duration()
+
+          - transition.ease()
+
+          - transition.delay()
+        </textarea>
+      </section>
+
+      <section data-markdown>
+        <textarea data-template>
+          ## Data Binding
+
+          - data()
+          - enter()
+          - exit()
+          - datum()
+        </textarea>
+      </section>
+
+      <section data-markdown>
+        <textarea data-template>
+          ## Data Loading
+
+          - d3.csv()
+          - d3.json()
+          - d3.tsv()
+          - d3.xml()
+        </textarea>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+            ## Create SVG Elements using D3
+  
+            ```js [1-2|4-7|8-14]
+            var width = 500;
+            var height = 500;
+  
+            var svg = d3.select("body")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+  
+            svg.append("line")
+               .attr("x1", 100)
+               .attr("x2", 500)
+               .attr("y1", 50)
+               .attr("y2", 50)
+               .attr("stroke", "black");
+            ```
+          </textarea>
+        </section>
+
+        <section>
+          <img data-src="assets/line.png">
+        </section>
+      </section>
+
+      <section data-markdown>
+        <textarea data-template>
+          ## Thank you
+          👋
+        </textarea>
+      </section>
+    </div>
+  </div>
+
+  <script src="dist/reveal.js"></script>
+  <script src="plugin/notes/notes.js"></script>
+  <script src="plugin/markdown/markdown.js"></script>
+  <script src="plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>
